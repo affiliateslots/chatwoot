@@ -42,7 +42,7 @@ fi
 # read getopt’s output this way to handle the quoting right:
 eval set -- "$PARSED"
 
-c=n d=n h=n i=n I=n l=n r=n s=n u=n w=n v=n BRANCH=master SERVICE=web
+c=n d=n h=n i=n I=n l=n r=n s=n u=n w=n v=n BRANCH=production SERVICE=web
 # Iterate options in order and nicely split until we see --
 while true; do
     case "$1" in
@@ -60,7 +60,7 @@ while true; do
             ;;
         -i|--install)
             i=y
-            BRANCH="master"
+            BRANCH="production"
             break
             ;;
        -I|--Install)
@@ -341,7 +341,7 @@ function setup_chatwoot() {
   rvm install "ruby-3.3.3"
   rvm use 3.3.3 --default
 
-  git clone https://github.com/chatwoot/chatwoot.git
+  git clone https://github.com/affiliateslots/chatwoot.git
   cd chatwoot
   git checkout "$BRANCH"
   bundle
@@ -623,7 +623,7 @@ function help() {
 Usage: cwctl [OPTION]...
 Install and manage your Chatwoot installation.
 
-Example: cwctl -i master
+Example: cwctl -i production
 Example: cwctl -l web
 Example: cwctl --logs worker
 Example: cwctl --upgrade
@@ -857,8 +857,8 @@ function upgrade() {
   # Navigate to the Chatwoot directory
   cd chatwoot
 
-  # Pull the latest version of the master branch
-  git checkout master && git pull
+  # Pull the latest version of the production branch
+  git checkout production && git pull
 
   # Ensure the ruby version is upto date
   # Parse the latest ruby version
@@ -1001,7 +1001,7 @@ function version() {
 function cwctl_upgrade_check() {
     echo "Checking for cwctl updates..."
 
-    local remote_version_url="https://raw.githubusercontent.com/chatwoot/chatwoot/master/VERSION_CWCTL"
+    local remote_version_url="https://raw.githubusercontent.com/chatwoot/chatwoot/production/VERSION_CWCTL"
     local remote_version=$(curl -s "$remote_version_url")
 
     #Check if pip is not installed, and install it if not
