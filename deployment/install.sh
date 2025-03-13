@@ -343,7 +343,7 @@ function setup_chatwoot() {
 
   git clone https://github.com/affiliateslots/chatwoot.git
   cd chatwoot
-  git checkout "$BRANCH"
+  git switch "$BRANCH"
   bundle
   pnpm i
 
