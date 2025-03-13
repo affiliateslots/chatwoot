@@ -260,6 +260,14 @@ Rails.application.routes.draw do
           end
 
           resources :upload, only: [:create]
+          
+          namespace :contents do
+            resources :google, only: [] do
+              collection do
+                post :translate
+              end
+            end
+          end
         end
       end
       # end of account scoped api routes
