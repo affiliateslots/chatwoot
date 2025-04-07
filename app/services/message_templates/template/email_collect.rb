@@ -29,7 +29,8 @@ class MessageTemplates::Template::EmailCollect
   end
 
   def email_input_box_template_message_params
-    content = 'Enter your email'
+    content = I18n.t('conversations.templates.email_input_box_message_body',
+                     account_name: account.name)
 
     {
       account_id: @conversation.account_id,
